@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Vaban basic interface</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <style>
+            .custom-body {
+                margin: 10px;
+            }
+            .custom-page-header {
+                margin: 0px 0 20px;
+            }
+            .table-header {
+                background-color: lightgray;
+                font-size: 12pt;
+                margin: 4px;
+            }
+            .custom-table {
+                margin-left: 5%;
+                width:95%; 
+                margin-bottom: 0px
+            }
+            .table-content {
+                text-align: left;
+                text-wrap: none;
+                vertical-align: top;
+                padding-top: 5px;
+            }
+
+
+        </style>
+    </head>
+    <body class="body custom-body">
+        <div class="panel-group">
+            <div class="page-header custom-page-header">
+                <h1>Vanban basic interface</h1>
+                <p>This simple interface provides some basic mean to interact with vaban webservices.</p>    
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#status" data-toggle="tab">
+                                Services status
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#ban" data-toggle="tab">
+                                Ban / Purge content
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="status" class="tab-pane fade in active">
+                            <table class="table-bordered table-hover table-responsive" style="width: 100%">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th>Services/Groups/Clusters</th>
+                                        <th>Backend Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-sm-4 table-content">
+                                            Group01 on
+                                            <ul>
+                                                <li>
+                                                    varnish01:6082
+                                                    <span class="label label-info">PONG 1431078011 1.0</span>
+                                                </li>
+                                                <li>
+                                                    varnish02:6082
+                                                    <span class="label label-info">PONG 1431078251 1.0</span>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="col-sm-8 table-content">
+                                            <b>varnish01:6082</b>                                            
+                                            <table class="table custom-table">
+                                                <tr> <!-- backend 01 -->
+                                                    <td>
+                                                        backend01(10.10.23.1:9000)
+                                                        <span class="label label-success">Healthy 4/4</span>    
+                                                    </td>
+                                                    <td>
+                                                        <form role="form">
+                                                            <a href="#" data-toggle="tooltip" title="Force status">
+                                                                <select class="form-control selectWidth force-status" id="backendStatus">
+                                                                    <option value="/v1/service/group1/health/backend01/healthy">Healthy</option>
+                                                                    <option value="/v1/service/group1/health/backend01/sick">Sick</option>
+                                                                    <option value="/v1/service/group1/health/backend01/auto">Auto</option>
+                                                                </select>
+                                                            </a>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr> <!-- backend 02 -->
+                                                    <td>
+                                                        backend02(10.10.23.2:9000)
+                                                        <span class="label label-success">Healthy 4/4</span>    
+                                                    </td>
+                                                    <td>
+                                                        <form role="form">
+                                                            <select class="form-control selectWidth force-status" id="backendStatus">
+                                                                <option value="/v1/service/group1/health/backend01/healthy">Healthy</option>
+                                                                <option value="/v1/service/group1/health/backend01/sick">Sick</option>
+                                                                <option value="/v1/service/group1/health/backend01/auto">Auto</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+
+                                            <b>varnish01:6082</b>                                            
+                                            <table class="table" style="margin-left: 5%; width:95%; margin-bottom: 0px">
+                                                <tr> <!-- backend 03 -->
+                                                    <td>
+                                                        backend03(10.10.233.1:9000)
+                                                        <span class="label label-danger">Sick 3/4</span>    
+                                                    </td>
+                                                    <td>
+                                                        <form role="form">
+                                                            <a href="#" data-toggle="tooltip" title="Force status">
+                                                                <select class="form-control selectWidth force-status" id="backendStatus">
+                                                                    <option value="/v1/service/group1/health/backend01/healthy">Healthy</option>
+                                                                    <option selected value="/v1/service/group1/health/backend01/sick">Sick</option>
+                                                                    <option value="/v1/service/group1/health/backend01/auto">Auto</option>
+                                                                </select>
+                                                            </a>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr> <!-- backend 04 -->
+                                                    <td>
+                                                        backend04(10.10.233.2:9000)
+                                                        <span class="label label-warning">Healthy 2/4</span>    
+                                                    </td>
+                                                    <td>
+                                                        <form role="form">
+                                                            <select class="form-control selectWidth force-status" id="backendStatus">
+                                                                <option value="/v1/service/group1/health/backend01/healthy">Healthy</option>
+                                                                <option value="/v1/service/group1/health/backend01/sick">Sick</option>
+                                                                <option value="/v1/service/group1/health/backend01/auto">Auto</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr> <!-- backend 05 -->
+                                                    <td>
+                                                        backend05(10.10.233.5:9000)
+                                                        <span class="label label-success">Healthy 4/4</span>    
+                                                    </td>
+                                                    <td>
+                                                        <form role="form">
+                                                            <select class="form-control selectWidth force-status" id="backendStatus">
+                                                                <option value="/v1/service/group1/health/backend01/healthy">Healthy</option>
+                                                                <option value="/v1/service/group1/health/backend01/sick">Sick</option>
+                                                                <option value="/v1/service/group1/health/backend01/auto">Auto</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="ban" class="tab-pane fade in">
+                            <h3>Ban/Purge content from a cluster</h3>
+                            <p>Select the on which cluster to act, enter the host or the url and submit your PURGE.</p>
+                            <div role="form">
+                                <div class="form-group">
+                                    <table class="table">
+                                        <tr>
+                                            <td class="col-sm-6 table-content">
+                                                <label for="cluster-to-purge" class="control-label">Select cluster to PURGE:</label>
+                                                <select id="cluster-to-purge" class="form-control col-sm-4">
+                                                    <option>group01</option>
+                                                </select>
+                                                <span class="help-block">This is some help text...</span>
+                                            </td>
+
+                                            <td class="col-sm-6 table-content">
+                                                <label for="usr">Requested domain or virtual host:</label>
+                                                <input type="text" class="form-control col-sm-4" id="usr">                                                
+                                                <span class="help-block">This is some help text...</span>
+
+                                                <label for="usr">Or enter a pattern of content to purge:</label>
+                                                <input type="text" class="form-control col-sm-4" id="usr">
+                                                <span class="help-block">This is some help text...</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td colspan="2" class="col-sm-6" >
+                                                <button type="button" class="col-sm-2 btn btn-danger btn-md pull-right">PURGE</button>
+                                                <button type="button" class="col-sm-2 btn btn-warning btn-md pull-right">Cancel</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading panel-info">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Output and logs</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <pre id="logs">logs and response from server</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-footer">Footer Panel</div>
+            </div>
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $(".force-status").change(function () {
+                $(this).blur();
+                var dt = new Date();
+                $('#logs').append("\n" + dt.toISOString() + " Called: " + $(this).val());
+            });
+            
+            $("a").click(function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+</html>
